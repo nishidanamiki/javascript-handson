@@ -30,7 +30,7 @@ const calculate = (a, operator, b) => {
 };
 
 // テスト
-console.log("10 + 5 = ", calculate(10, "+", 5));
+console.log("10 + 5 =", calculate(10, "+", 5));
 console.log("10 - 5 =", calculate(10, "-", 5));
 console.log("10 * 5 =", calculate(10, "*", 5));
 console.log("10 / 5 =", calculate(10, "/", 5));
