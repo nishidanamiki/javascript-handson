@@ -35,3 +35,18 @@ console.log("10 - 5 =", calculate(10, "-", 5));
 console.log("10 * 5 =", calculate(10, "*", 5));
 console.log("10 / 5 =", calculate(10, "/", 5));
 console.log("10 % 5 =", calculate(10, "%", 5));
+
+const calculations = [
+  { a: 100, operator: "+", b: 50 },
+  { a: 100, operator: "-", b: 30 },
+  { a: 25, operator: "*", b: 4 },
+  { a: 100, operator: "/", b: 5 },
+  { a: 10, operator: "/", b: 0 },
+];
+
+console.log("=== 計算結果 ===");
+
+for (const calc of calculations) {
+  const result = calculate(calc.a, calc.operator, calc.b);
+  console.log(`${calc.a} ${calc.operator} ${calc.b} = ${result}`);
+}
