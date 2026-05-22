@@ -1,4 +1,5 @@
 // 課題1：実行順序を予測する
+/*
 console.log("A");
 
 setTimeout(() => {
@@ -125,4 +126,40 @@ getUser(1)
   })
   .finally(() => {
     console.log("処理完了");
+  });
+*/
+
+// 課題5：Promise.allを使った並列処理
+function getUser(userId) {
+  return new Promise((resolve) => {
+    const names = ["田中", "佐藤", "鈴木", "高橋", "渡辺"];
+    setTimeout(() => {
+      resolve({
+        id: userId,
+        name: names[userId - 1] || `ユーザー${userId}`,
+      });
+    }, Math.random() * 1000);
+  });
+}
+
+// 5人のユーザーを並列で取得
+const userPromises = [
+  getUser(1),
+  getUser(2),
+  getUser(3),
+  getUser(4),
+  getUser(5),
+];
+
+console.log("全ユーザーを取得中...");
+
+Promise.all(userPromises)
+  .then((users) => {
+    console.log("取得完了！");
+    users.forEach((user) => {
+      console.log(` ID: ${user.id}, 名前: ${user.name}`);
+    });
+  })
+  .catch((error) => {
+    console.error("エラー:", error);
   });
