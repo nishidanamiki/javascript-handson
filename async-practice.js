@@ -31,4 +31,39 @@ function countdown(seconds) {
   }
 }
 
-countdown(10);
+countdown(5);
+
+// 課題3：Promiseによるデータ取得
+function fetchData(id) {
+  return new Promise((resolve, reject) => {
+    console.log(`データ取得中... (ID: ${id})`);
+
+    setTimeout(() => {
+      if (id <= 0) {
+        reject(new Error("無効なIDです"));
+      } else {
+        resolve({
+          id: id,
+          title: `データ ${id}`,
+          createdAt: new Date().toISOString(),
+        });
+      }
+    }, 1000);
+  });
+}
+
+fetchData(1)
+  .then((data) => {
+    console.log("取得成功:", data);
+  })
+  .catch((error) => {
+    console.error("エラー:", error.message);
+  });
+
+fetchData(-1)
+  .then((data) => {
+    console.log("取得成功:", data);
+  })
+  .catch((error) => {
+    console.error("エラー:", error.message);
+  });
