@@ -67,3 +67,62 @@ fetchData(-1)
   .catch((error) => {
     console.error("エラー:", error.message);
   });
+
+// 課題4：Promiseチェーンをによる連続処理
+// ユーザー取得
+function getUser(userId) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ id: userId, name: "山田太郎" });
+    }, 500);
+  });
+}
+
+// 投稿取得
+function getPosts(userId) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve([
+        { id: 1, userId: userId, title: "最初の投稿" },
+        { id: 2, userId: userId, title: "2番目の投稿" },
+      ]);
+    }, 500);
+  });
+}
+
+// コメント取得
+function getComments(postId) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve([
+        { id: 1, postId: postId, text: "素晴らしい記事です！" },
+        { id: 2, postId: postId, text: "参考になりました" },
+      ]);
+    }, 500);
+  });
+}
+
+// Promiseチェーンで連結
+console.log("処理開始");
+
+getUser(1)
+  .then((user) => {
+    console.log("ユーザー取得:", user.name);
+    return getPosts(user.id);
+  })
+  .then((posts) => {
+    console.log("投稿取得:", posts.length, "件");
+    return getComments(posts[0].id);
+  })
+  .then((comments) => {
+    console.log("コメント取得:", comments.length, "件");
+    comments.forEach((comment) => {
+      console.log(` - ${comment.text}`);
+    });
+  })
+  .catch((error) => {
+    console.error("エラー:", error);
+  })
+  .finally(() => {
+    console.log("処理完了");
+  });
