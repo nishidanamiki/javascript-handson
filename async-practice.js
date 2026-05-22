@@ -1,5 +1,4 @@
 // 課題1：実行順序を予測する
-/*
 console.log("A");
 
 setTimeout(() => {
@@ -127,7 +126,6 @@ getUser(1)
   .finally(() => {
     console.log("処理完了");
   });
-*/
 
 // 課題5：Promise.allを使った並列処理
 function getUser(userId) {
