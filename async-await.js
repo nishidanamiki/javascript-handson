@@ -121,3 +121,27 @@ async function fetchUser(id) {
     return null;
   }
 }
+
+// 順次実行
+async function sequential() {
+  const user1 = await getUser(1);
+  const user2 = await getUser(2);
+  const user3 = await getUser(3);
+
+  console.log("順次実行:", user1, user2, user3);
+}
+
+sequential();
+
+// 並列実行
+async function parallel() {
+  const [user1, user2, user3] = await Promise.all([
+    getUser(1),
+    getUser(2),
+    getUser(3),
+  ]);
+
+  console.log("並列実行:", user1, user2, user3);
+}
+
+parallel();
