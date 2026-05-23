@@ -103,3 +103,21 @@ async function fetchAllData() {
 }
 
 fetchAllData();
+
+// async/awaitのエラーハンドリング
+// ※このURLは教材用のため、実際には動作しない可能性がある
+async function fetchUser(id) {
+  try {
+    const response = await fetch(`https://api.example.com/users/${id}`);
+
+    if (!response.ok) {
+      throw new Error("ユーザーが見つかりません");
+    }
+
+    const user = await response.json();
+    return user;
+  } catch (error) {
+    console.error("エラー:", error.message);
+    return null;
+  }
+}
