@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>State Management Example</title>
+    <style>
+      /* 最初はデータリスト以外を非表示にしておく */
+      #loading,
+      #error,
+      #empty {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>User List</h1>
+
+    <!-- データ表示エリア -->
+    <ul id="user-list"></ul>
+
+    <!-- ローディング表示 -->
+    <div id="loading">データを読み込み中です...</div>
+
+    <!-- エラー表示 -->
+    <div id="error">エラーが発生しました。</div>
+
+    <!-- データが空の場合の表示 -->
+    <div id="empty">ユーザーデータが見つかりません。</div>
+
+    <script src="state-management.js"></script>
+  </body>
+</html>
