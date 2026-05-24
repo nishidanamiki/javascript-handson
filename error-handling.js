@@ -35,6 +35,8 @@ async function fetchUsers() {
   } catch (error) {
     // ネットワークエラーや、throwされたエラーがここで捕捉される
     console.error("データの取得に失敗しました:", error);
+  } finally {
+    console.log("処理が完了しました");
   }
 }
 
