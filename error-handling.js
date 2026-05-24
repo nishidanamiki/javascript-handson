@@ -14,3 +14,28 @@ try {
 }
 
 console.log("try...catchブロックの外の処理は続行されます");
+
+// fetchとtry-catchを使ったエラーハンドリング
+async function fetchUsers() {
+  try {
+    // 意図的に無効なURLを指定してエラーを発生させる
+    const response = await fetch(
+      "https://jsonplaceholder.typicode.com/invalid-url",
+    );
+
+    // fetchは404のようなHTTPエラーでは例外をスローしない
+    // response.okプロパティで成功したかを確認する必要がある
+    if (!response.ok) {
+      // サーバーからのレスポンスをエラーとして扱う
+      throw new Error(`HTTPエラー: ${response.status}`);
+    }
+
+    const users = await response.json();
+    console.log(users);
+  } catch (error) {
+    // ネットワークエラーや、throwされたエラーがここで捕捉される
+    console.error("データの取得に失敗しました:", error);
+  }
+}
+
+fetchUsers();
